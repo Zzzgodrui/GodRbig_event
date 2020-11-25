@@ -40,7 +40,7 @@ $(function () {
         //直接发送ajax请求
         $.ajax({
             type: "POST",
-            url: "http://ajax.frontend.itheima.net/api/reguser",
+            url: "/api/reguser",
             data,
             success: function (res) {
                 console.log(res);
@@ -61,7 +61,7 @@ $(function () {
         //直接发送ajax请求
         $.ajax({
             type: "POST",
-            url: "http://ajax.frontend.itheima.net/api/login",
+            url: "/api/login",
             data,
             success: function (res) {
                 console.log(res);
@@ -70,6 +70,9 @@ $(function () {
                     return layer.msg("登陆失败!!密码错误")
                 }
 
+
+
+                localStorage.setItem("token", res.token);
                 layer.msg("登录成功，即将去后台主页", {
                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
                 }, function () {
