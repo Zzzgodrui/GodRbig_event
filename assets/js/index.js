@@ -2,6 +2,24 @@ $(function () {
 
     let layer = layui.layer;
 
+    getAvatarAndName();
+
+    $("#logoutBtn").click(function () {
+        layer.confirm(
+            '确定退出登录?',
+            { icon: 3, title: '提示' },
+            function (index) {
+
+                localStorage.removeItem("token");
+
+                location.href = "login.html";
+
+                layer.close(index);
+            });
+    })
+})
+
+function getAvatarAndName() {
     $.ajax({
         url: "/my/userinfo",
         // header: "Authorization",
@@ -29,18 +47,5 @@ $(function () {
             }
         },
     })
+}
 
-    $("#logoutBtn").click(function () {
-        layer.confirm(
-            '确定退出登录?',
-            { icon: 3, title: '提示' },
-            function (index) {
-
-                localStorage.removeItem("token");
-
-                location.href = "login.html";
-
-                layer.close(index);
-            });
-    })
-})
